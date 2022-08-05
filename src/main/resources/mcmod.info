@@ -1,0 +1,16 @@
+[
+    {
+        "modid": "pkmskills",
+        "name": "Pokemon Skills",
+        "description": "A mod providing possibility for players to use pokemon moves.",
+        "version": "${version}",
+        "mcversion": "${mcversion}",
+        "url": "",
+        "updateUrl": "",
+        "authorList": ["SoliFungi"],
+        "credits": "\nDesigned, coded and textured by SoliFungi\nJava programming supported by HKRDYS",
+        "logoFile": "",
+        "screenshots": [],
+        "dependencies": []
+    }
+]

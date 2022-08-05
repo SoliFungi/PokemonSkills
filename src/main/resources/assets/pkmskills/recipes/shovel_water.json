@@ -1,0 +1,28 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "A",
+        "B",
+        "B"
+    ],
+
+    "key":
+    {
+        "A":
+        {
+            "item": "pkmskills:element_crystal",
+            "data": 10
+        },
+        "B":
+        {
+            "item": "minecraft:stick"
+        }
+    },
+
+    "result":
+    {
+        "item": "pkmskills:shovel_water"
+    }
+}

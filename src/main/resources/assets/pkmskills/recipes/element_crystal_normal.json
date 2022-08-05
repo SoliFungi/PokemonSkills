@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "##",
+        "##"
+    ],
+
+    "key":
+    {
+        "#":
+        {
+            "item": "pkmskills:element_fragment",
+            "data": 0
+        }
+    },
+
+    "result":
+    {
+        "item": "pkmskills:element_crystal",
+        "data": 0
+    }
+}

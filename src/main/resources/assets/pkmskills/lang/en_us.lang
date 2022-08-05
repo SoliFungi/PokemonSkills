@@ -1,0 +1,59 @@
+# PARSE_ESCAPES
+# CreativeTabs
+itemGroup.pkmMiscTab=PkmMats
+itemGroup.pkmEquipTab=PkmEquips
+
+
+# Items
+item.element_fragment_normal.name=Normal Fragment
+item.element_fragment_fight.name=Fight Fragment
+item.element_fragment_flying.name=Flying Fragment
+item.element_fragment_poison.name=Poison Fragment
+item.element_fragment_ground.name=Ground Fragment
+item.element_fragment_rock.name=Rock Fragment
+item.element_fragment_bug.name=Bug Fragment
+item.element_fragment_ghost.name=Ghost Fragment
+item.element_fragment_steel.name=Steel Fragment
+item.element_fragment_fire.name=Fire Fragment
+item.element_fragment_water.name=Water Fragment
+item.element_fragment_grass.name=Grass Fragment
+item.element_fragment_electric.name=Electric Fragment
+item.element_fragment_psychic.name=Psychic Fragment
+item.element_fragment_ice.name=Ice Fragment
+item.element_fragment_dragon.name=Dragon Fragment
+item.element_fragment_dark.name=Dark Fragment
+item.element_fragment_fairy.name=Fairy Fragment
+
+item.element_crystal_normal.name=Normal Crystal
+item.element_crystal_fight.name=Fight Crystal
+item.element_crystal_flying.name=Flying Crystal
+item.element_crystal_poison.name=Poison Crystal
+item.element_crystal_ground.name=Ground Crystal
+item.element_crystal_rock.name=Rock Crystal
+item.element_crystal_bug.name=Bug Crystal
+item.element_crystal_ghost.name=Ghost Crystal
+item.element_crystal_steel.name=Steel Crystal
+item.element_crystal_fire.name=Fire Crystal
+item.element_crystal_water.name=Water Crystal
+item.element_crystal_grass.name=Grass Crystal
+item.element_crystal_electric.name=Electric Crystal
+item.element_crystal_psychic.name=Psychic Crystal
+item.element_crystal_ice.name=Ice Crystal
+item.element_crystal_dragon.name=Dragon Crystal
+item.element_crystal_dark.name=Dark Crystal
+item.element_crystal_fairy.name=Fairy Crystal
+
+
+# Tools
+item.pickaxe_fire.name=Fire Element Pickaxe
+item.axe_fire.name=Fire Element Axe
+item.shovel_fire.name=Fire Element Shovel
+item.sword_fire.name=Fire Element Sword
+item.pickaxe_water.name=Water Element Pickaxe
+item.axe_water.name=Water Element Axe
+item.shovel_water.name=Water Element Shovel
+item.sword_water.name=Water Element Sword
+item.pickaxe_grass.name=Grass Element Pickaxe
+item.axe_grass.name=Grass Element Axe
+item.shovel_grass.name=Grass Element Shovel
+item.sword_grass.name=Grass Element Sword
