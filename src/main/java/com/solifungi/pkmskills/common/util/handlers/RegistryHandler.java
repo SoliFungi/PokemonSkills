@@ -2,12 +2,15 @@ package com.solifungi.pkmskills.common.util.handlers;
 
 import com.solifungi.pkmskills.common.init.ModBlocks;
 import com.solifungi.pkmskills.common.init.ModItems;
+import com.solifungi.pkmskills.common.init.ModPotions;
+import com.solifungi.pkmskills.common.init.ModStatusConditions;
 import com.solifungi.pkmskills.common.util.interfaces.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -48,5 +51,11 @@ public class RegistryHandler
                 ((IHasModel)block).registerModels();
             }
         }
+    }
+
+    public static void preInitRegistries()
+    {
+        ModPotions.registerPotions();
+        ModStatusConditions.registerStatusConditions();
     }
 }

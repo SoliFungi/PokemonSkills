@@ -11,11 +11,12 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
+apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 version = '1.0.0'
-group = 'com.yourname.modid' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'pkmskills'
+group = 'com.solifungi.pkmskills' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'PokemonSkills'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
@@ -66,6 +67,10 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
+//    maven { // TOP
+//        name = "tterrag maven"
+//        url = "https://maven.tterrag.com/"
+//    }
 }
 
 dependencies {
@@ -94,8 +99,28 @@ dependencies {
 
     // compile against the JEI API but do not include it at runtime
     compileOnly fg.deobf("mezz.jei:jei_${mc_version}:${jei_version}:api")
-    // at runtime, use the full JEI jar
-    runtimeOnly fg.deobf("mezz.jei:jei_${mc_version}:${jei_version}")
+//    // at runtime, use the full JEI jar
+//    runtimeOnly fg.deobf("mezz.jei:jei_${mc_version}:${jei_version}")
+//
+//    runtimeOnly fg.deobf("mcjty.theoneprobe:TheOneProbe-1.12:${probe_version}")
+}
+
+//处理资源部分
+processResources {
+    // 在版本更改时，这将确保任务会进行重置
+    inputs.property "version", project.version
+    inputs.property "mcversion", "1.12.2"
+
+    // 将资源部部分的 mcmod.info 文件的 ${version} 和 ${mcversion} 替换为如下两个变量
+    from(sourceSets.main.resources.srcDirs) {
+        include "mcmod.info"
+        expand  "version":project.version, "mcversion":'1.12.2'
+    }
+
+    // 复制剩余部分
+    from(sourceSets.main.resources.srcDirs) {
+        exclude "mcmod.info"
+    }
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

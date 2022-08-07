@@ -57,3 +57,12 @@ item.pickaxe_grass.name=草元素镐
 item.axe_grass.name=草元素斧
 item.shovel_grass.name=草元素铲
 item.sword_grass.name=草元素剑
+
+
+# Potions
+# Status Conditions
+status_burn=灼伤
+status_freeze=冰冻
+status_paralysis=麻痹
+status_poison=中毒
+status_badly_poison=剧毒
