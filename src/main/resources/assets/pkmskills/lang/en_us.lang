@@ -57,3 +57,12 @@ item.pickaxe_grass.name=Grass Element Pickaxe
 item.axe_grass.name=Grass Element Axe
 item.shovel_grass.name=Grass Element Shovel
 item.sword_grass.name=Grass Element Sword
+
+
+# Potions
+# Status Conditions
+status_burn=Burn
+status_freeze=Freeze
+status_paralysis=Paralysis
+status_poison=Poison
+status_badly_poison=Badly Poison

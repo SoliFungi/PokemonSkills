@@ -2,6 +2,7 @@ package com.solifungi.pkmskills.common;
 
 import com.solifungi.pkmskills.common.proxy.CommonProxy;
 import com.solifungi.pkmskills.common.util.Reference;
+import com.solifungi.pkmskills.common.util.handlers.RegistryHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -31,6 +32,7 @@ public class PokemonSkills
     public static void preInit(FMLPreInitializationEvent event)
     {
         logger = event.getModLog();
+        RegistryHandler.preInitRegistries();
     }
 
     @Mod.EventHandler

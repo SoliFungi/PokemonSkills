@@ -1,11 +1,11 @@
 package com.solifungi.pkmskills.common.util.compat.jei;
 
 import com.solifungi.pkmskills.common.util.Reference;
+import mezz.jei.api.*;
 import mezz.jei.api.ingredients.IIngredientRegistry;
 import mezz.jei.api.ingredients.IModIngredientRegistration;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
-import mezz.jei.api.*;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.common.Loader;
 
@@ -23,8 +23,8 @@ public class JEICompat implements IModPlugin
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry)
     {
-        final IJeiHelpers helpers = registry.getJeiHelpers();
-        final IGuiHelper gui = helpers.getGuiHelper();
+//        final IJeiHelpers helpers = registry.getJeiHelpers();
+//        final IGuiHelper gui = helpers.getGuiHelper();
     }
 
     @Override
@@ -32,9 +32,9 @@ public class JEICompat implements IModPlugin
     {
         if(!Loader.isModLoaded(Reference.MODID)) return;
 
-        final IIngredientRegistry ingredientRegistry = registry.getIngredientRegistry();
-        final IJeiHelpers jeiHelpers = registry.getJeiHelpers();
-        IRecipeTransferRegistry recipeTransfer = registry.getRecipeTransferRegistry();
+//        final IIngredientRegistry ingredientRegistry = registry.getIngredientRegistry();
+//        final IJeiHelpers jeiHelpers = registry.getJeiHelpers();
+//        IRecipeTransferRegistry recipeTransfer = registry.getRecipeTransferRegistry();
     }
 
     @Override
