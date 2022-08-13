@@ -4,6 +4,8 @@ import com.solifungi.pkmskills.common.util.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class PotionBase extends Potion {
 
@@ -15,9 +17,10 @@ public class PotionBase extends Potion {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public boolean hasStatusIcon()
     {
-        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation(Reference.MODID + "textures/gui/potion_effects.png"));
+        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation(Reference.MODID + ":textures/gui/potion_effects.png"));
         return true;
     }
 
