@@ -128,8 +128,14 @@ public class PotionEventHandler
             //Generic damage cuts in half if the attacker is BURNED
             if(attacker != null)
             {
-                if(attacker.isPotionActive(ModStatusConditions.BURN) && event.getSource() == DamageSource.GENERIC)
+                /*
+                damage type is player,those including weapons and hands,the Magic type is indirec
+                Date:2022/08/14
+                By：SFD
+                * */
+                if(attacker.isPotionActive(ModStatusConditions.BURN) && event.getSource().damageType.equals("player"))
                 {
+
                     event.setAmount(event.getAmount() * 0.5f);
                 }
             }
