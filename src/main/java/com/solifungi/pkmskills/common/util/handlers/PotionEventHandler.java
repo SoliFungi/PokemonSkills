@@ -4,12 +4,17 @@ import com.solifungi.pkmskills.common.init.ModStatusConditions;
 import com.solifungi.pkmskills.common.util.Reference;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.util.Map;
 
 import static java.lang.Math.max;
 
@@ -18,47 +23,45 @@ public class PotionEventHandler
 {
 
     /**
-     * THIS PART IS CODED FOR MOD-ADDED <STATUS CONDITIONS></STATUS> EFFECTS.
-     * <Status Conditions></Status> have their own trigger event.
-     * <Status Conditions></Status> are incompatible.
-     * <Status Conditions></Status> with an amplifier of 2 and higher have no difference with those with level 1.
+     * THIS PART IS CODED FOR MOD-ADDED <STATUS CONDITIONS> EFFECTS.
+     * <Status Conditions> have their own trigger events.
+     * <Status Conditions> are incompatible.
+     * <Status Conditions> with amplifiers of 2 and larger will be forced to change into level 1.
      * Vanilla POISON shall be replaced by mod ones.
-     * Effects for <status conditions></status> generally include damage counted by %, (physical)attack fall, slowness and freezing.
+     * Effects for <status conditions> generally include damage counted by %, (physical)attack fall, slowness and freezing.
      */
-
-    public static boolean isEntityStatused = false;
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onPotionAdded(PotionEvent.PotionAddedEvent event)
     {
-        //Get <world>, the <potion effect> the event attempts to add, and the <entity> affected by the event.
+        /*
+
+        //Get world, the potion & effect the event attempts to add, and the entity affected by the event.
         World world = event.getEntity().getEntityWorld();
         EntityLivingBase affectedOne = event.getEntityLiving();
         PotionEffect eventPotionEffect = event.getPotionEffect();
+        Potion eventPotion = eventPotionEffect.getPotion();
 
         //If the event-added potion is one of the <status conditions>
-        //Add exclusive Tag for <status conditions>，and set them incompatible (Soli Exclusion Principle)
-        if(eventPotionEffect.getPotion() == ModStatusConditions.BURN || eventPotionEffect.getPotion() == ModStatusConditions.FREEZE || eventPotionEffect.getPotion() == ModStatusConditions.PARALYSIS ||
-                eventPotionEffect.getPotion() == ModStatusConditions.POISON || eventPotionEffect.getPotion() == ModStatusConditions.BADLY_POISON)
+        if(eventPotion == ModStatusConditions.BURN || eventPotion == ModStatusConditions.FREEZE || eventPotion == ModStatusConditions.PARALYSIS ||
+                eventPotion == ModStatusConditions.POISON || eventPotion == ModStatusConditions.BADLY_POISON)
         {
-            if(isEntityStatused)
+            //Set <status conditions> incompatible (Soli Exclusion Principle)
+            Map<Potion, Boolean> entityStatusMap = ModStatusConditions.getEntityStatusMap(affectedOne);
+            if(ModStatusConditions.statusCount(entityStatusMap) > 1)
             {
-                if(!affectedOne.isPotionActive(eventPotionEffect.getPotion()))
-                {
-                    affectedOne.removePotionEffect(eventPotionEffect.getPotion());
+                if(!world.isRemote){
+                    affectedOne.removePotionEffect(eventPotion);
                 }
             }
-            else
-            {
-                isEntityStatused = true;
-            }
-
             //<Status conditions> can be added with amplifier 0 only.
-            if(eventPotionEffect.getAmplifier() > 0)
+            else if(eventPotionEffect.getAmplifier() > 0)
             {
-                int duration = eventPotionEffect.getDuration();
-                affectedOne.removePotionEffect(eventPotionEffect.getPotion());
-                affectedOne.addPotionEffect(new PotionEffect(eventPotionEffect.getPotion(),duration,0));
+                if(!world.isRemote){
+                    int duration = eventPotionEffect.getDuration();
+                    affectedOne.removePotionEffect(eventPotion);
+                    affectedOne.addPotionEffect(new PotionEffect(eventPotion,duration,0));
+                }
             }
         }
 
@@ -70,7 +73,7 @@ public class PotionEventHandler
             int amplifier = eventPotionEffect.getAmplifier();
             affectedOne.removePotionEffect(eventPotionEffect.getPotion());
 
-            if(isEntityStatused)
+            if(ModStatusConditions.isEntityStatused(affectedOne))
             {
                 //Status POISON + vanilla POISON(lvl.n) ---> n = 1: Status POISON，n > 1: Status BADLY_POISON
                 //Set duration: the longer one of the two
@@ -108,31 +111,28 @@ public class PotionEventHandler
                 }
             }
         }
+
+        */
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onPotionRemoved(PotionEvent.PotionRemoveEvent event)
+
+    @SubscribeEvent
+    public static void onLivingHurt(LivingHurtEvent event)
     {
-        if(event.getPotion() == ModStatusConditions.BURN || event.getPotion() == ModStatusConditions.FREEZE || event.getPotion() == ModStatusConditions.PARALYSIS ||
-                event.getPotion() == ModStatusConditions.POISON || event.getPotion() == ModStatusConditions.BADLY_POISON)
+        World world = event.getEntity().getEntityWorld();
+
+        if(!world.isRemote)
         {
-            //This event is cancelable.
-            if(!event.isCanceled())
+            EntityLivingBase attacker = (EntityLivingBase) event.getSource().getTrueSource();
+
+            //Generic damage cuts in half if the attacker is BURNED
+            if(attacker != null)
             {
-                isEntityStatused = false;
+                if(attacker.isPotionActive(ModStatusConditions.BURN) && event.getSource() == DamageSource.GENERIC)
+                {
+                    event.setAmount(event.getAmount() * 0.5f);
+                }
             }
         }
     }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onPotionExpired(PotionEvent.PotionExpiryEvent event)
-    {
-        if(event.getPotionEffect().getPotion() == ModStatusConditions.BURN || event.getPotionEffect().getPotion() == ModStatusConditions.FREEZE || event.getPotionEffect().getPotion() == ModStatusConditions.PARALYSIS ||
-                event.getPotionEffect().getPotion() == ModStatusConditions.POISON || event.getPotionEffect().getPotion() == ModStatusConditions.BADLY_POISON)
-        {
-            isEntityStatused = false;
-        }
-    }
-
-
 }
