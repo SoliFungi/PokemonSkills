@@ -3,16 +3,13 @@ package com.solifungi.pkmskills.common.util.handlers;
 import com.solifungi.pkmskills.common.init.ModStatusConditions;
 import com.solifungi.pkmskills.common.util.Reference;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.MobEffects;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.util.EntityDamageSource;
 
 import java.util.Map;
 
@@ -129,11 +126,11 @@ public class PotionEventHandler
             if(attacker != null)
             {
                 /*
-                damage type is player,those including weapons and hands,the Magic type is indirec
                 Date:2022/08/14
                 By：SFD
+                Now if damage made by magic then damage will not to reduce
                 * */
-                if(attacker.isPotionActive(ModStatusConditions.BURN) && event.getSource().damageType.equals("player"))
+                if(attacker.isPotionActive(ModStatusConditions.BURN) && (!(event.getSource().isMagicDamage()) && event.getSource() instanceof  EntityDamageSource))
                 {
 
                     event.setAmount(event.getAmount() * 0.5f);
