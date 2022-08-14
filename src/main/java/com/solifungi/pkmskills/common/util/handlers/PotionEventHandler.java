@@ -130,9 +130,14 @@ public class PotionEventHandler
                 By：SFD
                 Now if damage made by magic then damage will not to reduce
                 * */
-                if(attacker.isPotionActive(ModStatusConditions.BURN) && (!(event.getSource().isMagicDamage()) && event.getSource() instanceof  EntityDamageSource))
+                if(attacker.isPotionActive(ModStatusConditions.BURN) && (!(event.getSource().isMagicDamage()) && event.getSource() instanceof EntityDamageSource))
                 {
 
+                    event.setAmount(event.getAmount() * 0.5f);
+                }
+                //Freeze can be magic damage down.
+                else if (attacker.isPotionActive(ModStatusConditions.FREEZE) && ((event.getSource().isMagicDamage()) && event.getSource() instanceof EntityDamageSource))
+                {
                     event.setAmount(event.getAmount() * 0.5f);
                 }
             }
