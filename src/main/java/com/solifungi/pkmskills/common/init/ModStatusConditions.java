@@ -3,17 +3,16 @@ package com.solifungi.pkmskills.common.init;
 import com.solifungi.pkmskills.common.potions.PotionStatus;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.DamageSource;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ModStatusConditions {
 
-    //Map contains entity <status conditions> information
     private static final Map<Potion, Boolean> entityStatusMap = new HashMap<>();
+    public static final DamageSource BAD_POISON = (new DamageSource("bad_poison")).setDamageBypassesArmor().setMagicDamage();
 
     public static final Potion BURN = new PotionStatus("burn",true,16745257,0,0);
     public static final Potion FREEZE = new PotionStatus("freeze",true,65497,1,0);
@@ -36,6 +35,7 @@ public class ModStatusConditions {
         ForgeRegistries.POTIONS.register(effect);
     }
 
+
     public static void initEntityStatusMap()
     {
         entityStatusMap.put(ModStatusConditions.BURN, false);
@@ -54,7 +54,7 @@ public class ModStatusConditions {
         if (entityLiving.isPotionActive(ModStatusConditions.FREEZE)) {entityStatusMap.replace(ModStatusConditions.FREEZE, true);}
         if (entityLiving.isPotionActive(ModStatusConditions.PARALYSIS)) {entityStatusMap.replace(ModStatusConditions.PARALYSIS, true);}
         if (entityLiving.isPotionActive(ModStatusConditions.POISON)) {entityStatusMap.replace(ModStatusConditions.POISON, true);}
-        if (entityLiving.isPotionActive(ModStatusConditions.BADLY_POISON)){entityStatusMap.replace(ModStatusConditions.BADLY_POISON, true);}
+        if (entityLiving.isPotionActive(ModStatusConditions.BADLY_POISON)) {entityStatusMap.replace(ModStatusConditions.BADLY_POISON, true);}
 
         return entityStatusMap;
     }
@@ -76,6 +76,5 @@ public class ModStatusConditions {
         return entity.isPotionActive(ModStatusConditions.BURN) || entity.isPotionActive(ModStatusConditions.FREEZE) || entity.isPotionActive(ModStatusConditions.PARALYSIS) ||
                 entity.isPotionActive(ModStatusConditions.POISON) || entity.isPotionActive(ModStatusConditions.BADLY_POISON);
     }
-
 
 }

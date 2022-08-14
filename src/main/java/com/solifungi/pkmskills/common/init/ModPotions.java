@@ -7,7 +7,6 @@ import net.minecraft.potion.PotionType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,6 @@ public class ModPotions {
 //    public static final PotionType LONG_NEW_POTION = new PotionType("new_potion",
 //            new PotionEffect[]{new PotionEffect(NEW_POTION_EFFECT,4800)}).setRegistryName("long_new_potion");
 
-    @Nullable
     private static Potion getRegisteredMobEffect(String id)
     {
         Potion potion = Potion.REGISTRY.getObject(new ResourceLocation(id));
@@ -36,7 +34,7 @@ public class ModPotions {
 
     public static void registerPotions()
     {
-//        registerPotion(NEW_POTION, LONG_NEW_POTION, NEW_POTION_EFFECT);
+        //registerPotion(NEW_POTION, LONG_NEW_POTION, NEW_POTION_EFFECT);
     }
 
     private static void registerPotion(PotionType defaultPotion, PotionType longPotion, Potion effect)
