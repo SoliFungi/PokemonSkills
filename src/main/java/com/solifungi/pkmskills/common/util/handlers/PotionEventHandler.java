@@ -109,10 +109,8 @@ public class PotionEventHandler
             EntityLivingBase victim = event.getEntityLiving();
             EntityLivingBase attacker = (EntityLivingBase) event.getSource().getTrueSource();
 
-            //Melee damage(Type:generic) cuts in half if the attacker is BURNED
-            /*
-            Realized non-magic damage drop ONLY
-             */
+            //Physical damage(non-magic) cuts in half if the attacker is BURNED
+
             if(attacker != null)
             {
                 if(attacker.isPotionActive(ModStatusConditions.BURN) && !event.getSource().isMagicDamage())
