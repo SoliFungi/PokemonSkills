@@ -7,6 +7,7 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -14,8 +15,6 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.Map;
-
-import static java.lang.Math.max;
 
 @Mod.EventBusSubscriber(modid = Reference.MODID)
 public class PotionEventHandler
@@ -46,53 +45,61 @@ public class PotionEventHandler
             Map<Potion, Boolean> entityStatusMap = ModStatusConditions.getEntityStatusMap(affectedOne);
             if(ModStatusConditions.statusCount(entityStatusMap) > 1)
             {
-                if(!world.isRemote){
-                    affectedOne.removePotionEffect(eventPotion);
+                if(!world.isRemote)
+                {
+                    affectedOne.addTag(eventPotion.getName() + ".readytoremove");
                 }
             }
         }
 
-        //If the event-added potion is vanilla POISON
-        else if(eventPotionEffect.getPotion() == MobEffects.POISON)
+    }
+
+
+    @SubscribeEvent
+    public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event)
+    {
+        World world = event.getEntity().getEntityWorld();
+        EntityLivingBase entity = event.getEntityLiving();
+
+        if(!world.isRemote)
         {
-            int dur_vanilla = eventPotionEffect.getDuration();
-            int amplifier = eventPotionEffect.getAmplifier();
-
-            if(ModStatusConditions.isEntityStatused(affectedOne))
+            PotionEffect vanillaPoison = entity.getActivePotionEffect(MobEffects.POISON);
+            if(vanillaPoison != null)
             {
-                //Status POISON + vanilla POISON(lvl.n) ---> n = 1: Status POISON，n > 1: Status BADLY_POISON
-                //Set duration: the longer one of the two
-                PotionEffect modPoison = affectedOne.getActivePotionEffect(ModStatusConditions.POISON);
-                if(modPoison != null)
-                {
-                    int dur_poison = modPoison.getDuration();
-                    if(amplifier == 0)
-                    {
-                        affectedOne.addPotionEffect(new PotionEffect(ModStatusConditions.POISON, dur_vanilla));
-                    }
-                    else
-                    {
-                        affectedOne.addPotionEffect(new PotionEffect(ModStatusConditions.BADLY_POISON, max(dur_vanilla, dur_poison)));
-                    }
-                }
-                //Status BADLY_POISON + vanilla POISON ---> Status BADLY_POISON
-                //Set duration: the longer one of the two
-                else if(affectedOne.isPotionActive(ModStatusConditions.BADLY_POISON))
-                {
-                    affectedOne.addPotionEffect(new PotionEffect(ModStatusConditions.BADLY_POISON, dur_vanilla));
-                }
-            }
+                int duration = vanillaPoison.getDuration();
+                int amplifier = vanillaPoison.getAmplifier();
 
-            //No effects or have other irrelevant effects ---> n = 1: Status POISON，n > 1: Status BADLY_POISON
-            else
-            {
-                if(amplifier == 0)
+                entity.removePotionEffect(MobEffects.POISON);
+
+                if(amplifier < 1)
                 {
-                    affectedOne.addPotionEffect(new PotionEffect(ModStatusConditions.POISON, dur_vanilla));
+                    if(!ModStatusConditions.isEntityStatused(entity) || entity.isPotionActive(ModStatusConditions.POISON))
+                    {
+                        entity.addPotionEffect(new PotionEffect(ModStatusConditions.POISON, duration));
+                    }
                 }
                 else
                 {
-                    affectedOne.addPotionEffect(new PotionEffect(ModStatusConditions.BADLY_POISON, dur_vanilla));
+                    if(!ModStatusConditions.isEntityStatused(entity) || entity.isPotionActive(ModStatusConditions.BADLY_POISON))
+                    {
+                        entity.addPotionEffect(new PotionEffect(ModStatusConditions.BADLY_POISON, duration));
+                    }
+                    else if(entity.isPotionActive(ModStatusConditions.POISON))
+                    {
+                        //Duration of modPoison is not considered
+                        entity.removePotionEffect(ModStatusConditions.POISON);
+                        entity.addPotionEffect(new PotionEffect(ModStatusConditions.BADLY_POISON, duration));
+                    }
+                }
+            }
+
+            Map<Potion, Boolean> entityStatusMap = ModStatusConditions.getEntityStatusMap(entity);
+            for(Potion potion : entityStatusMap.keySet())
+            {
+                if(entity.getTags().contains(potion.getName() + ".readytoremove"))
+                {
+                    entity.removePotionEffect(potion);
+                    entity.removeTag(potion.getName() + ".readytoremove");
                 }
             }
         }
@@ -109,14 +116,14 @@ public class PotionEventHandler
             EntityLivingBase victim = event.getEntityLiving();
             EntityLivingBase attacker = (EntityLivingBase) event.getSource().getTrueSource();
 
-            //Physical damage(non-magic) cuts in half if the attacker is BURNED
-
             if(attacker != null)
             {
+                //Physical damage(non-magic) cuts in half if the attacker is BURNED
                 if(attacker.isPotionActive(ModStatusConditions.BURN) && !event.getSource().isMagicDamage())
                 {
                     event.setAmount(event.getAmount() * 0.5f);
                 }
+                //Paralyzed entity have 25% change to miss a hit
                 if(attacker.isPotionActive(ModStatusConditions.PARALYSIS) && attacker.getRNG().nextFloat() < 0.25)
                 {
                     event.setCanceled(true);

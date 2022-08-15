@@ -7,7 +7,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-
 public class PotionBase extends Potion
 {
     public PotionBase(String name, boolean isBadEffect, int Color, int iconIndexX, int iconIndexY) {
