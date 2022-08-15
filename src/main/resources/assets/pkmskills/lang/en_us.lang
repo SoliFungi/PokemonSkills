@@ -69,7 +69,9 @@ status_badly_poison=Badly Poison
 
 
 # Damage Source
-death.attack.bad_poison=%s was perished by an acute poison
+death.attack.dmg_bad_poison=%s was perished by an acute poison
+death.attack.dmg_poison=%s was suffering from a deadly poison before its death
+death.attack.dmg_burn=%s can hardly put up with piercing heat
 
 
 # Command

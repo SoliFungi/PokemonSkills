@@ -7,13 +7,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.init.MobEffects;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
-import java.util.Objects;
 
 public class PotionStatus extends PotionBase
 {
@@ -43,15 +41,15 @@ public class PotionStatus extends PotionBase
     {
         if(this == ModStatusConditions.BURN)
         {
-            entity.attackEntityFrom(DamageSource.MAGIC, entity.getMaxHealth() * 0.0625f);
+            entity.attackEntityFrom(ModStatusConditions.DMG_BURN, entity.getMaxHealth() * 0.0625f);
         }
         else if(this == ModStatusConditions.POISON)
         {
-            entity.attackEntityFrom(DamageSource.MAGIC, entity.getMaxHealth() * 0.125f);
+            entity.attackEntityFrom(ModStatusConditions.DMG_POISON, entity.getMaxHealth() * 0.125f);
         }
         else if(this == ModStatusConditions.BADLY_POISON)
         {
-            entity.attackEntityFrom(ModStatusConditions.BAD_POISON,entity.getMaxHealth() * 0.0625f);
+            entity.attackEntityFrom(ModStatusConditions.DMG_BADLY_POISON,entity.getMaxHealth() * 0.0625f);
         }
         else if(this == ModStatusConditions.FREEZE)
         {

@@ -69,7 +69,9 @@ status_badly_poison=剧毒
 
 
 # Damage Source
-death.attack.bad_poison=%s在剧毒中凋亡了
+death.attack.dmg_bad_poison=%s在剧毒中凋亡了
+death.attack.dmg_poison=%s被致命的毒药折磨而死
+death.attack.dmg_burn=%s无法忍受针刺般的灼烧
 
 
 # Command

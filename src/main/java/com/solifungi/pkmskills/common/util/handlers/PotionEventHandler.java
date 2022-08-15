@@ -131,7 +131,7 @@ public class PotionEventHandler
             }
 
             //Badly poison amplifier++ once it take effect
-            if(event.getSource().getDamageType().equals("bad_poison"))
+            if(event.getSource().getDamageType().equals("dmg_badly_poison"))
             {
                 PotionEffect badlyPoison = victim.getActivePotionEffect(ModStatusConditions.BADLY_POISON);
                 if(badlyPoison != null)
