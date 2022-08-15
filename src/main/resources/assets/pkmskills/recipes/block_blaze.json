@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "###",
+        "###",
+        "###"
+    ],
+
+    "key":
+    {
+        "#":
+        {
+            "item": "minecraft:blaze_powder"
+        }
+    },
+
+    "result":
+    {
+        "item": "pkmskills:block_blaze"
+    }
+}

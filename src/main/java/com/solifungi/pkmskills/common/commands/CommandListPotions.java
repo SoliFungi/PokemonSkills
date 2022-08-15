@@ -9,7 +9,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 
 import javax.annotation.Nullable;
@@ -26,6 +25,7 @@ public class CommandListPotions extends CommandBase {
         return "potionlist";
     }
 
+    @Override
     public int getRequiredPermissionLevel()
     {
         return 0;

@@ -12,7 +12,7 @@ public class ModCreativeTabs
     {
         @SideOnly(Side.CLIENT)
         public ItemStack getTabIconItem() {
-            return new ItemStack(Items.DIAMOND);
+            return new ItemStack(ModItems.ELEMENT_CRYSTAL,1,9);
         }
     };
 
@@ -20,7 +20,7 @@ public class ModCreativeTabs
     {
         @SideOnly(Side.CLIENT)
         public ItemStack getTabIconItem() {
-            return new ItemStack(Items.DIAMOND_CHESTPLATE);
+            return new ItemStack(ModItems.PICKAXE_FIRE);
         }
     };
 }
