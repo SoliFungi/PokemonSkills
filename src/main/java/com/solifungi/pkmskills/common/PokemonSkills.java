@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import org.apache.logging.log4j.Logger;
 
 
@@ -45,5 +46,11 @@ public class PokemonSkills
     public static void postInit(FMLPostInitializationEvent event)
     {
 
+    }
+
+    @Mod.EventHandler
+    public static void serverInit(FMLServerStartingEvent event)
+    {
+        RegistryHandler.serverRegistries(event);
     }
 }

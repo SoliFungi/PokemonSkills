@@ -66,3 +66,15 @@ status_freeze=Freeze
 status_paralysis=Paralysis
 status_poison=Poison
 status_badly_poison=Badly Poison
+
+
+# Damage Source
+death.attack.bad_poison=%s was perished by an acute poison
+
+
+# Command
+commands.potionlist.usage=Usage: /potionlist <player> [type]
+commands.potionlist.failure.potionEmpty=No potion effects are found on %s
+commands.potionlist.failure.statusEmpty=No status conditions are found on %s
+commands.potionlist.allPotions=There are %s total active potions on Player %s:
+commands.potionlist.allStatuses=There are %s total status conditions on Player %s:

@@ -1,5 +1,6 @@
 package com.solifungi.pkmskills.common.util.handlers;
 
+import com.solifungi.pkmskills.common.commands.CommandListPotions;
 import com.solifungi.pkmskills.common.init.ModBlocks;
 import com.solifungi.pkmskills.common.init.ModItems;
 import com.solifungi.pkmskills.common.init.ModPotions;
@@ -11,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -57,5 +59,10 @@ public class RegistryHandler
     {
         ModPotions.registerPotions();
         ModStatusConditions.registerStatusConditions();
+    }
+
+    public static void serverRegistries(FMLServerStartingEvent event)
+    {
+        event.registerServerCommand(new CommandListPotions());
     }
 }

@@ -66,3 +66,15 @@ status_freeze=冰冻
 status_paralysis=麻痹
 status_poison=中毒
 status_badly_poison=剧毒
+
+
+# Damage Source
+death.attack.bad_poison=%s在剧毒中凋亡了
+
+
+# Command
+commands.potionlist.usage=用法: /potionlist <player> [type]
+commands.potionlist.failure.potionEmpty=在%s身上没有找到任何药水效果
+commands.potionlist.failure.statusEmpty=在%s身上没有找到任何异常状态
+commands.potionlist.allPotions=总共有%s种药水效果作用于玩家%s：
+commands.potionlist.allStatuses=总共有%s种异常状态作用于玩家%s：
