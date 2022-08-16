@@ -44,6 +44,10 @@ item.element_crystal_dark.name=Dark Crystal
 item.element_crystal_fairy.name=Fairy Crystal
 
 
+# Blocks
+tile.block_blaze.name=Blaze Block
+
+
 # Tools
 item.pickaxe_fire.name=Fire Element Pickaxe
 item.axe_fire.name=Fire Element Axe
@@ -57,6 +61,19 @@ item.pickaxe_grass.name=Grass Element Pickaxe
 item.axe_grass.name=Grass Element Axe
 item.shovel_grass.name=Grass Element Shovel
 item.sword_grass.name=Grass Element Sword
+
+item.pickaxe_blaze.name=Blaze Pickaxe
+item.axe_blaze.name=Blaze Axe
+item.shovel_blaze.name=Blaze Shovel
+item.sword_blaze.name=Blaze Sword
+item.pickaxe_torrent.name=Torrent Pickaxe
+item.axe_torrent.name=Torrent Axe
+item.shovel_torrent.name=Torrent Shovel
+item.sword_torrent.name=Torrent Sword
+item.pickaxe_overgrow.name=Overgrow Pickaxe
+item.axe_overgrow.name=Overgrow Axe
+item.shovel_overgrow.name=Overgrow Shovel
+item.sword_overgrow.name=Overgrow Sword
 
 
 # Potions

@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "pkmskills:items/tools/pickaxe_blaze"
+    }
+}

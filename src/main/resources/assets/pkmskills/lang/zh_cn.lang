@@ -44,6 +44,10 @@ item.element_crystal_dark.name=暗黑水晶
 item.element_crystal_fairy.name=妖精水晶
 
 
+# Blocks
+tile.block_blaze.name=烈焰方块
+
+
 # Tools
 item.pickaxe_fire.name=火元素镐
 item.axe_fire.name=火元素斧
@@ -57,6 +61,19 @@ item.pickaxe_grass.name=草元素镐
 item.axe_grass.name=草元素斧
 item.shovel_grass.name=草元素铲
 item.sword_grass.name=草元素剑
+
+item.pickaxe_blaze.name=烈焰镐
+item.axe_blaze.name=烈焰斧
+item.shovel_blaze.name=烈焰铲
+item.sword_blaze.name=烈焰剑
+item.pickaxe_torrent.name=激流镐
+item.axe_torrent.name=激流斧
+item.shovel_torrent.name=激流铲
+item.sword_torrent.name=激流剑
+item.pickaxe_overgrow.name=繁茂镐
+item.axe_overgrow.name=繁茂斧
+item.shovel_overgrow.name=繁茂铲
+item.sword_overgrow.name=繁茂剑
 
 
 # Potions
