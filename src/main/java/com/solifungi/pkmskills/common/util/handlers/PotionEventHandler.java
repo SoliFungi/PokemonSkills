@@ -1,6 +1,7 @@
 package com.solifungi.pkmskills.common.util.handlers;
 
 import com.solifungi.pkmskills.common.init.ModStatusConditions;
+import com.solifungi.pkmskills.common.potions.PotionStatus;
 import com.solifungi.pkmskills.common.util.Reference;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
@@ -122,6 +123,14 @@ public class PotionEventHandler
                 if(attacker.isPotionActive(ModStatusConditions.BURN) && !event.getSource().isMagicDamage())
                 {
                     event.setAmount(event.getAmount() * 0.5f);
+                }
+                //Magic damage cuts in half if the attacker is FROSTBITTEN
+                if(ConfigHandler.isFreezeFrostbite)
+                {
+                    if(attacker.isPotionActive(ModStatusConditions.FREEZE) && event.getSource().isMagicDamage())
+                    {
+                        event.setAmount(event.getAmount() * 0.5f);
+                    }
                 }
                 //Paralyzed entity have 25% change to miss a hit
                 if(attacker.isPotionActive(ModStatusConditions.PARALYSIS) && attacker.getRNG().nextFloat() < 0.25)

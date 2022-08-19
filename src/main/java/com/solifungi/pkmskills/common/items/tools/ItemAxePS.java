@@ -5,8 +5,11 @@ import com.solifungi.pkmskills.common.init.ModCreativeTabs;
 import com.solifungi.pkmskills.common.init.ModItems;
 import com.solifungi.pkmskills.common.util.handlers.EnumHandler;
 import com.solifungi.pkmskills.common.util.interfaces.IHasModel;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTool;
 import net.minecraft.util.text.TextFormatting;
 
 public class ItemAxePS extends ItemAxe implements IHasModel {
@@ -41,4 +44,11 @@ public class ItemAxePS extends ItemAxe implements IHasModel {
     {
         PokemonSkills.proxy.registerItemRenderer(this,0,"inventory");
     }
+
+    public Item setDisassembleTo(Item toolTop)
+    {
+        ModItems.putItemInDisassembleMap(ModItems.disassembleMap, this, toolTop);
+        return this;
+    }
+
 }

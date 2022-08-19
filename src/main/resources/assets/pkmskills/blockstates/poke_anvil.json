@@ -1,0 +1,9 @@
+{
+    "variants":
+    {
+        "facing=north": {"model": "pkmskills:poke_anvil"},
+        "facing=east": {"model": "pkmskills:poke_anvil","y": 90},
+        "facing=south": {"model": "pkmskills:poke_anvil","y": 180},
+        "facing=west": {"model": "pkmskills:poke_anvil","y": 270}
+    }
+}

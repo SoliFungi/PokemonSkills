@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y,variant=mossy": {"model": "pkmskills:log_mossy"},
+        "axis=z,variant=mossy": {"model": "pkmskills:log_mossy","x": 90},
+        "axis=x,variant=mossy": {"model": "pkmskills:log_mossy","x": 90,"y": 90},
+        "axis=none,variant=mossy": {"model": "pkmskills:log_mossy"}
+    }
+}

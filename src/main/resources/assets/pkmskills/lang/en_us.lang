@@ -5,6 +5,11 @@ itemGroup.pkmEquipTab=PkmEquips
 
 
 # Items
+item.plate_iron.name=Iron Plate
+item.rod_iron.name=Iron Rod
+item.rod_prismarine.name=Prismarine Rod
+item.stick_mossy.name=Mossy Stick
+
 item.element_fragment_normal.name=Normal Fragment
 item.element_fragment_fight.name=Fight Fragment
 item.element_fragment_flying.name=Flying Fragment
@@ -43,12 +48,33 @@ item.element_crystal_dragon.name=Dragon Crystal
 item.element_crystal_dark.name=Dark Crystal
 item.element_crystal_fairy.name=Fairy Crystal
 
+item.pickaxe_top_fire.name=Fire Pickaxe Top
+item.axe_top_fire.name=Fire Axe Top
+item.shovel_top_fire.name=Fire Shovel Top
+item.sword_top_fire.name=Fire Sword Top
+item.pickaxe_top_water.name=Water Pickaxe Top
+item.axe_top_water.name=Water Axe Top
+item.shovel_top_water.name=Water Shovel Top
+item.sword_top_water.name=Water Sword Top
+item.pickaxe_top_grass.name=Grass Pickaxe Top
+item.axe_top_grass.name=Grass Axe Top
+item.shovel_top_grass.name=Grass Shovel Top
+item.sword_top_grass.name=Grass Sword Top
+
 
 # Blocks
 tile.block_blaze.name=Blaze Block
+tile.poke_anvil.name=Poke Anvil
+
+tile.log_mossy.name=Mossy Log
+tile.planks_mossy.name=Mossy Planks
+tile.sapling_mossy.name=Mossy Sapling
+tile.leaves_mossy.name=Mossy Leaves
 
 
 # Tools
+item.disassembling_hammer.name=Disassembling Hammer
+
 item.pickaxe_fire.name=Fire Element Pickaxe
 item.axe_fire.name=Fire Element Axe
 item.shovel_fire.name=Fire Element Shovel
@@ -89,6 +115,7 @@ status_badly_poison=Badly Poison
 death.attack.dmg_bad_poison=%s was perished by an acute poison
 death.attack.dmg_poison=%s was suffering from a deadly poison before its death
 death.attack.dmg_burn=%s can hardly put up with piercing heat
+death.attack.dmg_frostbite=%s lost heat in freezing magic
 
 
 # Command
@@ -97,3 +124,12 @@ commands.potionlist.failure.potionEmpty=No potion effects are found on %s
 commands.potionlist.failure.statusEmpty=No status conditions are found on %s
 commands.potionlist.allPotions=There are %s total active potions on Player %s:
 commands.potionlist.allStatuses=There are %s total status conditions on Player %s:
+
+
+# Gui
+gui.poke_anvil.title=Forge Materials and (Dis)assemble Tools
+
+
+# Sounds
+block.pokeanvil.forging=Poke Anvil: Forging
+block.pokeanvil.finish=Poke Anvil: Finish

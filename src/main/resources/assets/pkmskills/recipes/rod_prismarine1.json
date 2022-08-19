@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "#",
+        "#"
+    ],
+
+    "key":
+    {
+        "#":
+        {
+            "item": "minecraft:prismarine"
+        }
+    },
+
+    "result":
+    {
+        "item": "pkmskills:rod_prismarine",
+        "count": 4
+    }
+}

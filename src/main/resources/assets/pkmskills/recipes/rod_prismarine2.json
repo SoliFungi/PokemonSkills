@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "#",
+        "#"
+    ],
+
+    "key":
+    {
+        "#":
+        {
+            "item": "minecraft:prismarine_shard"
+        }
+    },
+
+    "result":
+    {
+        "item": "pkmskills:rod_prismarine"
+    }
+}

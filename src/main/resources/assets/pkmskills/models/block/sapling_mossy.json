@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "pkmskills:blocks/sapling_mossy"
+    }
+}

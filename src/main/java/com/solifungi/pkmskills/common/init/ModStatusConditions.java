@@ -15,6 +15,7 @@ public class ModStatusConditions {
     public static final DamageSource DMG_BADLY_POISON = (new DamageSource("dmg_badly_poison")).setDamageBypassesArmor().setMagicDamage();
     public static final DamageSource DMG_POISON = (new DamageSource("dmg_poison")).setDamageBypassesArmor().setMagicDamage();
     public static final DamageSource DMG_BURN = (new DamageSource("dmg_burn")).setDamageBypassesArmor().setMagicDamage();
+    public static final DamageSource DMG_FROSTBITE = (new DamageSource("dmg_frostbite")).setDamageBypassesArmor().setMagicDamage();
 
     public static final Potion BURN = new PotionStatus("burn",true,16745257,0,0);
     public static final Potion FREEZE = new PotionStatus("freeze",true,65497,1,0);

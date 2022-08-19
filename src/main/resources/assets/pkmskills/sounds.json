@@ -1,0 +1,20 @@
+{
+    "block.pokeanvil.forging": {
+        "subtitle": "block.pokeanvil.forging",
+        "sounds": [
+            {
+                "name": "pkmskills:block/pokeanvil/forging",
+                "stream": true
+            }
+        ]
+    },
+    "block.pokeanvil.finish": {
+        "subtitle": "block.pokeanvil.finish",
+        "sounds": [
+            {
+                "name": "pkmskills:block/pokeanvil/finish",
+                "stream": true
+            }
+        ]
+    }
+}

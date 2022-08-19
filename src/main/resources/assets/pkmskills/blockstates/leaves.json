@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "check_decay=true,decayable=true,variant=mossy": {"model": "pkmskills:leaves_mossy"},
+        "check_decay=false,decayable=true,variant=mossy": {"model": "pkmskills:leaves_mossy"},
+        "check_decay=true,decayable=false,variant=mossy": {"model": "pkmskills:leaves_mossy"},
+        "check_decay=false,decayable=false,variant=mossy": {"model": "pkmskills:leaves_mossy"}
+    }
+}

@@ -11,6 +11,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
+
 
 /**
  * @author SoliFungi
@@ -19,6 +21,7 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION)
 public class PokemonSkills
 {
+    public static File config;
 
     public static Logger logger;
 
@@ -33,19 +36,20 @@ public class PokemonSkills
     public static void preInit(FMLPreInitializationEvent event)
     {
         logger = event.getModLog();
-        RegistryHandler.preInitRegistries();
+        RegistryHandler.preInitRegistries(event);
     }
 
     @Mod.EventHandler
     public static void init(FMLInitializationEvent event)
     {
         logger.info("Mod initialized:" + Reference.NAME);
+        RegistryHandler.initRegistries(event);
     }
 
     @Mod.EventHandler
     public static void postInit(FMLPostInitializationEvent event)
     {
-
+        RegistryHandler.postInitRegistries(event);
     }
 
     @Mod.EventHandler

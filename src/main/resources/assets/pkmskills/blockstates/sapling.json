@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "stage=0,variant=mossy": {"model": "pkmskills:sapling_mossy"},
+        "stage=1,variant=mossy": {"model": "pkmskills:sapling_mossy"}
+    }
+}

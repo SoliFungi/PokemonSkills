@@ -162,4 +162,70 @@ public class EnumHandler
         }
     }
 
+
+    /**
+     * Enumerated type C: Different types of wood blocks.
+     * 枚举类C：不同的木头种类
+     */
+    public static enum EnumWoodType implements IStringSerializable
+    {
+        MOSSY(0,"mossy");
+
+        private static final EnumWoodType[] META_LOOKUP = new EnumWoodType[values().length];
+        private final int meta;
+        private final String name;
+        private final String unlocalizedName;
+
+        EnumWoodType(int meta, String name)
+        {
+            this(meta,name,name);
+        }
+
+        EnumWoodType(int metaIn, String nameIn, String unlocalizedNameIn)
+        {
+            this.meta = metaIn;
+            this.name = nameIn;
+            this.unlocalizedName = unlocalizedNameIn;
+        }
+
+        @Override
+        public String getName()
+        {
+            return this.name;
+        }
+
+        public String getUnlocalizedName()
+        {
+            return this.unlocalizedName;
+        }
+
+        public int getMeta()
+        {
+            return this.meta;
+        }
+
+        @Override
+        public String toString()
+        {
+            return this.name;
+        }
+
+        public static EnumWoodType byMetadata(int meta)
+        {
+            if (meta < 0 || meta >= META_LOOKUP.length)
+            {
+                meta = 0;
+            }
+            return META_LOOKUP[meta];
+        }
+
+        static
+        {
+            for (EnumWoodType enumWoodType : values())
+            {
+                META_LOOKUP[enumWoodType.getMeta()] = enumWoodType;
+            }
+        }
+    }
+
 }

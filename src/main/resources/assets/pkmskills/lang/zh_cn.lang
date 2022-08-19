@@ -5,6 +5,11 @@ itemGroup.pkmEquipTab=宝可装备
 
 
 # Items
+item.plate_iron.name=铁板
+item.rod_iron.name=铁棒
+item.rod_prismarine.name=海晶石杆
+item.stick_mossy.name=苔木棍
+
 item.element_fragment_normal.name=普通碎片
 item.element_fragment_fight.name=格斗碎片
 item.element_fragment_flying.name=天空碎片
@@ -43,12 +48,33 @@ item.element_crystal_dragon.name=巨龙水晶
 item.element_crystal_dark.name=暗黑水晶
 item.element_crystal_fairy.name=妖精水晶
 
+item.pickaxe_top_fire.name=火元素镐顶端
+item.axe_top_fire.name=火元素斧顶端
+item.shovel_top_fire.name=火元素铲顶端
+item.sword_top_fire.name=火元素剑顶端
+item.pickaxe_top_water.name=水元素镐顶端
+item.axe_top_water.name=水元素斧顶端
+item.shovel_top_water.name=水元素铲顶端
+item.sword_top_water.name=水元素剑顶端
+item.pickaxe_top_grass.name=草元素镐顶端
+item.axe_top_grass.name=草元素斧顶端
+item.shovel_top_grass.name=草元素铲顶端
+item.sword_top_grass.name=草元素剑顶端
+
 
 # Blocks
 tile.block_blaze.name=烈焰方块
+tile.poke_anvil.name=宝可工具砧
+
+tile.log_mossy.name=苔木原木
+tile.planks_mossy.name=苔木木板
+tile.sapling_mossy.name=苔木树苗
+tile.leaves_mossy.name=苔木树叶
 
 
 # Tools
+item.disassembling_hammer.name=工具拆解锤
+
 item.pickaxe_fire.name=火元素镐
 item.axe_fire.name=火元素斧
 item.shovel_fire.name=火元素铲
@@ -89,6 +115,7 @@ status_badly_poison=剧毒
 death.attack.dmg_bad_poison=%s在剧毒中凋亡了
 death.attack.dmg_poison=%s被致命的毒药折磨而死
 death.attack.dmg_burn=%s无法忍受针刺般的灼烧
+death.attack.dmg_frostbite=%s在寒冰魔法中失去了体温
 
 
 # Command
@@ -97,3 +124,12 @@ commands.potionlist.failure.potionEmpty=在%s身上没有找到任何药水效�
 commands.potionlist.failure.statusEmpty=在%s身上没有找到任何异常状态
 commands.potionlist.allPotions=总共有%s种药水效果作用于玩家%s：
 commands.potionlist.allStatuses=总共有%s种异常状态作用于玩家%s：
+
+
+# Gui
+gui.poke_anvil.title=锻造材料和拆装工具
+
+
+# Sounds
+block.pokeanvil.forging=工具砧：敲打
+block.pokeanvil.finish=工具砧：完成

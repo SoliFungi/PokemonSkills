@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "pkmskills:blocks/log_mossy_top",
+        "side": "pkmskills:blocks/log_mossy"
+    }
+}

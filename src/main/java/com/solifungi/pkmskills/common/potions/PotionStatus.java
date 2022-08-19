@@ -2,6 +2,7 @@ package com.solifungi.pkmskills.common.potions;
 
 import com.solifungi.pkmskills.common.init.ModStatusConditions;
 import com.solifungi.pkmskills.common.util.Reference;
+import com.solifungi.pkmskills.common.util.handlers.ConfigHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -53,18 +54,25 @@ public class PotionStatus extends PotionBase
         }
         else if(this == ModStatusConditions.FREEZE)
         {
-            //Lock visual angles
-            //Codes from mod "thebetweenlands"
-            NBTTagCompound nbt = entity.getEntityData();
-            if(nbt.getInteger("pkmskills.freeze.ticks") != entity.ticksExisted - 1)
+            if(ConfigHandler.isFreezeFrostbite)
             {
-                nbt.setFloat("pkmskills.freeze.yaw", entity.rotationYaw);
-                nbt.setFloat("pkmskills.freeze.yawHead", entity.rotationYawHead);
-                nbt.setFloat("pkmskills.freeze.pitch", entity.rotationPitch);
+                entity.attackEntityFrom(ModStatusConditions.DMG_FROSTBITE, entity.getMaxHealth() * 0.0625f);
             }
-            nbt.setInteger("pkmskills.freeze.ticks", entity.ticksExisted);
-            entity.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, nbt.getFloat("pkmskills.freeze.yaw"), nbt.getFloat("thebetweenlands.petrify.pitch"));
-            entity.rotationYawHead = nbt.getFloat("pkmskills.freeze.yawHead");
+            else
+            {
+                //Lock visual angles
+                //Codes from mod "thebetweenlands"
+                NBTTagCompound nbt = entity.getEntityData();
+                if(nbt.getInteger("pkmskills.freeze.ticks") != entity.ticksExisted - 1)
+                {
+                    nbt.setFloat("pkmskills.freeze.yaw", entity.rotationYaw);
+                    nbt.setFloat("pkmskills.freeze.yawHead", entity.rotationYawHead);
+                    nbt.setFloat("pkmskills.freeze.pitch", entity.rotationPitch);
+                }
+                nbt.setInteger("pkmskills.freeze.ticks", entity.ticksExisted);
+                entity.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, nbt.getFloat("pkmskills.freeze.yaw"), nbt.getFloat("thebetweenlands.petrify.pitch"));
+                entity.rotationYawHead = nbt.getFloat("pkmskills.freeze.yawHead");
+            }
         }
     }
 

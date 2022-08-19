@@ -66,8 +66,7 @@ public class ItemElementCrystal extends Item implements IHasModel, IMetaName
     {
         for(int i = 0 ; i < EnumHandler.EnumElementType.values().length ; i++)
         {
-            PokemonSkills.proxy.registerVariantRenderer(this, i, "element_" + this.type + "_" +
-                    EnumHandler.EnumElementType.values()[i].getName(), "inventory");
+            PokemonSkills.proxy.registerVariantRenderer(this, i, "element_" + this.type + "_" + EnumHandler.EnumElementType.values()[i].getName(), "inventory");
         }
     }
 }
