@@ -48,7 +48,7 @@ public class PkmTypeTagBase {
                     power = power * 0.5;
                 }
                 //如果攻击者效果绝佳属性列表含有被攻击者TAG
-                else if(attackerTypeTag.getSpuerEffectiveType().contains(onAttackerTypeTag.getTypeTag())){
+                else if(attackerTypeTag.getSuperEffectiveType().contains(onAttackerTypeTag.getTypeTag())){
                     power = power *2;
                 }
             }

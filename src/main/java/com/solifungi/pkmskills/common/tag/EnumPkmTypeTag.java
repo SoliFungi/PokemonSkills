@@ -85,7 +85,7 @@ public class EnumPkmTypeTag implements Serializable {
             return type_tag;
         }
 
-        public Set<String> getSpuerEffectiveType() {
+        public Set<String> getSuperEffectiveType() {
             return super_effective_type;
         }
 
