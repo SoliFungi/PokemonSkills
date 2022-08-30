@@ -12,7 +12,6 @@ import net.minecraft.item.ItemBlock;
 public class BlockBlaze extends BlockMagma implements IHasModel {
     public BlockBlaze(String name)
     {
-        super();
         setUnlocalizedName(name);
         setRegistryName(name);
         setLightLevel(0.8F);

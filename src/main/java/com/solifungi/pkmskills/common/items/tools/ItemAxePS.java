@@ -23,7 +23,7 @@ public class ItemAxePS extends ItemAxe implements IHasModel {
         setCreativeTab(ModCreativeTabs.PKM_EQUIP);
 
         //Apply color format for element tools
-        if(material.getRepairItemStack().getItem() == ModItems.ELEMENT_CRYSTAL)
+        if(material.getRepairItemStack().getItem().equals(ModItems.ELEMENT_CRYSTAL))
         {
             EnumHandler.EnumElementType type = EnumHandler.EnumElementType.byMetadata(material.getRepairItemStack().getMetadata());
             this.format = type.getColor().getColor();

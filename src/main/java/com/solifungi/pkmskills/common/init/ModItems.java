@@ -2,6 +2,7 @@ package com.solifungi.pkmskills.common.init;
 
 import com.solifungi.pkmskills.common.items.ItemBase;
 import com.solifungi.pkmskills.common.items.ItemElementCrystal;
+import com.solifungi.pkmskills.common.items.ItemToolTop;
 import com.solifungi.pkmskills.common.items.tools.*;
 import com.solifungi.pkmskills.common.util.handlers.EnumHandler;
 import net.minecraft.init.Items;
@@ -32,19 +33,6 @@ public class ModItems
     public static final Item ELEMENT_FRAGMENT = new ItemElementCrystal("element_fragment","fragment");
     public static final Item ELEMENT_CRYSTAL = new ItemElementCrystal("element_crystal","crystal").setMaxStackSize(16);
 
-    public static final Item PICKAXE_TOP_FIRE = new ItemBase("pickaxe_top_fire");
-    public static final Item AXE_TOP_FIRE = new ItemBase("axe_top_fire");
-    public static final Item SHOVEL_TOP_FIRE = new ItemBase("shovel_top_fire");
-    public static final Item SWORD_TOP_FIRE = new ItemBase("sword_top_fire");
-    public static final Item PICKAXE_TOP_WATER = new ItemBase("pickaxe_top_water");
-    public static final Item AXE_TOP_WATER = new ItemBase("axe_top_water");
-    public static final Item SHOVEL_TOP_WATER = new ItemBase("shovel_top_water");
-    public static final Item SWORD_TOP_WATER = new ItemBase("sword_top_water");
-    public static final Item PICKAXE_TOP_GRASS = new ItemBase("pickaxe_top_grass");
-    public static final Item AXE_TOP_GRASS = new ItemBase("axe_top_grass");
-    public static final Item SHOVEL_TOP_GRASS = new ItemBase("shovel_top_grass");
-    public static final Item SWORD_TOP_GRASS = new ItemBase("sword_top_grass");
-
 
     /*****Materials*****/
     //Single-Element Materials
@@ -59,6 +47,20 @@ public class ModItems
 
     /*****Tools*****/
     public static final Item DISASSEMBLING_HAMMER = new ItemDisassemblingHammer("disassembling_hammer");
+
+    //Tool Tops
+    public static final Item PICKAXE_TOP_FIRE = new ItemToolTop("pickaxe_top_fire", TOOL_FIRE);
+    public static final Item AXE_TOP_FIRE = new ItemToolTop("axe_top_fire", TOOL_FIRE);
+    public static final Item SHOVEL_TOP_FIRE = new ItemToolTop("shovel_top_fire", TOOL_FIRE);
+    public static final Item SWORD_TOP_FIRE = new ItemToolTop("sword_top_fire", TOOL_FIRE);
+    public static final Item PICKAXE_TOP_WATER = new ItemToolTop("pickaxe_top_water", TOOL_WATER);
+    public static final Item AXE_TOP_WATER = new ItemToolTop("axe_top_water", TOOL_WATER);
+    public static final Item SHOVEL_TOP_WATER = new ItemToolTop("shovel_top_water", TOOL_WATER);
+    public static final Item SWORD_TOP_WATER = new ItemToolTop("sword_top_water", TOOL_WATER);
+    public static final Item PICKAXE_TOP_GRASS = new ItemToolTop("pickaxe_top_grass", TOOL_GRASS);
+    public static final Item AXE_TOP_GRASS = new ItemToolTop("axe_top_grass", TOOL_GRASS);
+    public static final Item SHOVEL_TOP_GRASS = new ItemToolTop("shovel_top_grass", TOOL_GRASS);
+    public static final Item SWORD_TOP_GRASS = new ItemToolTop("sword_top_grass", TOOL_GRASS);
 
     //Single-Element Starter Tools
     public static final Item PICKAXE_FIRE = new ItemPickaxePS("pickaxe_fire",TOOL_FIRE).setDisassembleTo(PICKAXE_TOP_FIRE);

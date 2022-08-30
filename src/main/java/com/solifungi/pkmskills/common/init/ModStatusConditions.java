@@ -41,6 +41,7 @@ public class ModStatusConditions {
 
     public static void initEntityStatusMap()
     {
+        entityStatusMap.clear();
         entityStatusMap.put(ModStatusConditions.BURN, false);
         entityStatusMap.put(ModStatusConditions.FREEZE, false);
         entityStatusMap.put(ModStatusConditions.PARALYSIS, false);
@@ -53,31 +54,34 @@ public class ModStatusConditions {
         //Put/Set all false in entityStatusMap
         initEntityStatusMap();
 
-        if (entityLiving.isPotionActive(ModStatusConditions.BURN)) {entityStatusMap.replace(ModStatusConditions.BURN, true);}
-        if (entityLiving.isPotionActive(ModStatusConditions.FREEZE)) {entityStatusMap.replace(ModStatusConditions.FREEZE, true);}
-        if (entityLiving.isPotionActive(ModStatusConditions.PARALYSIS)) {entityStatusMap.replace(ModStatusConditions.PARALYSIS, true);}
-        if (entityLiving.isPotionActive(ModStatusConditions.POISON)) {entityStatusMap.replace(ModStatusConditions.POISON, true);}
-        if (entityLiving.isPotionActive(ModStatusConditions.BADLY_POISON)) {entityStatusMap.replace(ModStatusConditions.BADLY_POISON, true);}
+        for(Potion potion : entityStatusMap.keySet())
+        {
+            if(entityLiving.isPotionActive(potion))
+            {
+                entityStatusMap.replace(potion,true);
+            }
+        }
 
         return entityStatusMap;
     }
 
     public static int statusCount(Map<Potion,Boolean> map)
     {
-        int trues = 0;
+        int count = 0;
         for(Potion potion : map.keySet())
         {
             if(map.get(potion))
             {
-                trues += 1;
+                count += 1;
             }
         }
-        return trues;
+        return count;
     }
 
-    public static boolean isEntityStatused(EntityLivingBase entity) {
-        return entity.isPotionActive(ModStatusConditions.BURN) || entity.isPotionActive(ModStatusConditions.FREEZE) || entity.isPotionActive(ModStatusConditions.PARALYSIS) ||
-                entity.isPotionActive(ModStatusConditions.POISON) || entity.isPotionActive(ModStatusConditions.BADLY_POISON);
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    public static boolean isEntityStatused(EntityLivingBase entity)
+    {
+        return entity.isPotionActive(ModStatusConditions.BURN) || entity.isPotionActive(ModStatusConditions.FREEZE) || entity.isPotionActive(ModStatusConditions.PARALYSIS) || entity.isPotionActive(ModStatusConditions.POISON) || entity.isPotionActive(ModStatusConditions.BADLY_POISON);
     }
 
 }

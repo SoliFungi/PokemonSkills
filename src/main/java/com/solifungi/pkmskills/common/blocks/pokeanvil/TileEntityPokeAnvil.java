@@ -5,6 +5,11 @@ import com.solifungi.pkmskills.common.init.ModItems;
 import com.solifungi.pkmskills.common.items.tools.ItemDisassemblingHammer;
 import com.solifungi.pkmskills.common.util.handlers.SoundsHandler;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.ISound;
+import net.minecraft.client.audio.PositionedSound;
+import net.minecraft.client.audio.PositionedSoundRecord;
+import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -35,6 +40,7 @@ public class TileEntityPokeAnvil extends TileEntity implements IInventory, ITick
     private String customName;
     private int workTime;
     private int totalWorkTime;
+    private Minecraft mc;
 
 
     @Override
@@ -198,12 +204,9 @@ public class TileEntityPokeAnvil extends TileEntity implements IInventory, ITick
 
     public int getWorkTime(ItemStack left, ItemStack right)
     {
-        if(ModItems.disassembleMap.containsKey(left.getItem()))
+        if(ModItems.disassembleMap.containsKey(left.getItem()) || ModItems.disassembleMap.containsValue(left.getItem()))
         {
-            if(ModItems.disassembleMap.containsValue(left.getItem()))
-            {
-                return 180;
-            }
+            return 180;
         }
         return 60;
     }
@@ -264,10 +267,7 @@ public class TileEntityPokeAnvil extends TileEntity implements IInventory, ITick
              **/
             if(ModItems.disassembleMap.containsKey(inputLeft.getItem())) //Disassemble, output must be empty
             {
-                int meta = inputLeft.getItemDamage();
-                NBTTagCompound compound = inputLeft.getTagCompound();
-                ItemStack trueResult = new ItemStack(result.getItem(),1, meta, compound);
-                this.inventory.set(2, trueResult.copy());
+                this.inventory.set(2, copyTags(result, inputLeft));
 
                 int damage = inputRight.getItemDamage();
                 if(damage + 15 < inputRight.getMaxDamage())
@@ -285,11 +285,7 @@ public class TileEntityPokeAnvil extends TileEntity implements IInventory, ITick
 
             else if(ModItems.disassembleMap.containsValue(inputLeft.getItem())) //Assemble, output must be empty
             {
-                int meta = inputLeft.getItemDamage();
-                NBTTagCompound compound = inputLeft.getTagCompound();
-                ItemStack trueResult = new ItemStack(result.getItem(),1, meta, compound);
-
-                this.inventory.set(2, trueResult.copy());
+                this.inventory.set(2, copyTags(result, inputLeft));
 
                 if(result.getItem() instanceof ItemTool)
                 {
@@ -392,4 +388,13 @@ public class TileEntityPokeAnvil extends TileEntity implements IInventory, ITick
         return result.getItem() == output.getItem() && result.getMetadata() == output.getMetadata() && result.getTagCompound() == output.getTagCompound();
     }
 
+    private ItemStack copyTags(ItemStack result, ItemStack inputLeft)
+    {
+        NBTTagCompound compound = inputLeft.getTagCompound();
+        int damage = inputLeft.getItemDamage();
+        result.setTagCompound(compound);
+        result.setItemDamage(damage);
+
+        return result;
+    }
 }

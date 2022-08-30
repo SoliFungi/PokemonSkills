@@ -98,74 +98,8 @@ public class EnumHandler
 
 
     /**
-     * Enumerated type B: Different (Pokemon) abilities---have varied effects on tools and armors.
-     * 枚举类B：不同（宝可梦）特性——应用在装备上有着不同效果
-     */
-    public static enum EnumAbility implements IStringSerializable
-    {
-        ;
-
-        private static final EnumAbility[] META_LOOKUP = new EnumAbility[values().length];
-        private final int meta;
-        private final String name;
-        private final String unlocalizedName;
-
-        EnumAbility(int meta, String name)
-        {
-            this(meta,name,name);
-        }
-
-        EnumAbility(int metaIn, String nameIn, String unlocalizedNameIn)
-        {
-            this.meta = metaIn;
-            this.name = nameIn;
-            this.unlocalizedName = unlocalizedNameIn;
-        }
-
-        @Override
-        public String getName()
-        {
-            return this.name;
-        }
-
-        public String getUnlocalizedName()
-        {
-            return this.unlocalizedName;
-        }
-
-        public int getMeta()
-        {
-            return this.meta;
-        }
-
-        @Override
-        public String toString()
-        {
-            return this.name;
-        }
-
-        public static EnumAbility byMetadata(int meta)
-        {
-            if (meta < 0 || meta >= META_LOOKUP.length)
-            {
-                meta = 0;
-            }
-            return META_LOOKUP[meta];
-        }
-
-        static
-        {
-            for (EnumAbility enumability : values())
-            {
-                META_LOOKUP[enumability.getMeta()] = enumability;
-            }
-        }
-    }
-
-
-    /**
-     * Enumerated type C: Different types of wood blocks.
-     * 枚举类C：不同的木头种类
+     * Enumerated type B: Different types of wood blocks.
+     * 枚举类B：不同的木头种类
      */
     public static enum EnumWoodType implements IStringSerializable
     {
