@@ -9,7 +9,10 @@ import com.solifungi.pkmskills.common.init.ModItems;
 import com.solifungi.pkmskills.common.util.handlers.EnumHandler;
 import com.solifungi.pkmskills.common.util.interfaces.IHasModel;
 import com.solifungi.pkmskills.common.util.interfaces.IMetaName;
+import com.solifungi.pkmskills.common.world.gen.generators.WorldGenMegaMossyTree;
+import com.solifungi.pkmskills.common.world.gen.generators.WorldGenMossyTree;
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
@@ -27,6 +30,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
+import net.minecraft.world.gen.feature.WorldGenMegaJungle;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.TerrainGen;
@@ -145,7 +149,7 @@ public class BlockCustomSapling extends BlockBush implements IGrowable, IMetaNam
     @Override
     public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
     {
-        if((Integer)state.getValue(STAGE).intValue() == 0)
+        if(((Integer)state.getValue(STAGE)).intValue() == 0)
         {
             worldIn.setBlockState(pos, state.cycleProperty(STAGE),4);
         }
@@ -163,13 +167,34 @@ public class BlockCustomSapling extends BlockBush implements IGrowable, IMetaNam
         }
         WorldGenerator gen = (WorldGenerator)(rand.nextInt(10) == 0 ? new WorldGenBigTree(false) : new WorldGenTrees(false));
 
-        int i = 0, j = 0;
+        int x = 0, z = 0;
         boolean flag = false;
 
         switch ((EnumHandler.EnumWoodType)state.getValue(VARIANT))
         {
             case MOSSY:
-                //gen = new WorldGenMossyTree();
+
+                label0:
+
+                for (x = 0; x >= -1; --x)
+                {
+                    for (z = 0; z >= -1; --z)
+                    {
+                        if (this.isTwoByTwoOfType(world, pos, x, z, EnumHandler.EnumWoodType.MOSSY))
+                        {
+                            gen = new WorldGenMegaMossyTree(true, 10, 20);
+                            flag = true;
+                            break label0;
+                        }
+                    }
+                }
+
+                if (!flag)
+                {
+                    gen = new WorldGenMossyTree();
+                }
+
+                break;
         }
 
         IBlockState iBlockState = Blocks.AIR.getDefaultState();
@@ -217,6 +242,17 @@ public class BlockCustomSapling extends BlockBush implements IGrowable, IMetaNam
     protected boolean canSustainBush(IBlockState state)
     {
         return state.getBlock() == Blocks.GRASS || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.FARMLAND;
+    }
+
+    private boolean isTwoByTwoOfType(World worldIn, BlockPos pos, int x, int z, EnumHandler.EnumWoodType variant)
+    {
+        return this.isTypeAt(worldIn, pos.add(x, 0, z), variant) && this.isTypeAt(worldIn, pos.add(x + 1, 0, z), variant) && this.isTypeAt(worldIn, pos.add(x, 0, z + 1), variant) && this.isTypeAt(worldIn, pos.add(x + 1, 0, z + 1), variant);
+    }
+
+    public boolean isTypeAt(World worldIn, BlockPos pos, EnumHandler.EnumWoodType variant)
+    {
+        IBlockState state = worldIn.getBlockState(pos);
+        return state.getBlock() == this && state.getValue(VARIANT) == variant;
     }
 
 }

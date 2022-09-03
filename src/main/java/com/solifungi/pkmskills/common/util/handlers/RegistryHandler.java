@@ -1,14 +1,13 @@
 package com.solifungi.pkmskills.common.util.handlers;
 
 import com.solifungi.pkmskills.common.PokemonSkills;
-import com.solifungi.pkmskills.common.blocks.pokeanvil.TileEntityPokeAnvil;
 import com.solifungi.pkmskills.common.commands.CommandListPotions;
 import com.solifungi.pkmskills.common.init.ModBlocks;
 import com.solifungi.pkmskills.common.init.ModItems;
 import com.solifungi.pkmskills.common.init.ModPotions;
 import com.solifungi.pkmskills.common.init.ModStatusConditions;
-import com.solifungi.pkmskills.common.potions.PotionBase;
 import com.solifungi.pkmskills.common.util.interfaces.IHasModel;
+import com.solifungi.pkmskills.common.world.gen.WorldGenCustomTrees;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -20,6 +19,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -64,6 +64,8 @@ public class RegistryHandler
 
     public static void preInitRegistries(FMLPreInitializationEvent event)
     {
+        GameRegistry.registerWorldGenerator(new WorldGenCustomTrees(), 0);
+
         ModPotions.registerPotions();
         ModStatusConditions.registerStatusConditions();
 
