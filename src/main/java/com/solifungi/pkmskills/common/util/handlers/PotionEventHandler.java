@@ -31,35 +31,46 @@ public class PotionEventHandler
     private static Potion locate_potion = null;
 
     @SubscribeEvent
-    public static void onPotionAdd(PotionEvent.PotionAddedEvent event)
+    public static void onPotionAdded(PotionEvent.PotionAddedEvent event)
     {
-        modPotionTagUtil(event.getEntity(), event.getEntityLiving(), event.getPotionEffect());
-    }
+        World world = event.getEntity().getEntityWorld();
+        EntityLivingBase entityLiving = event.getEntityLiving();
+        Potion eventPotion = event.getPotionEffect().getPotion();
 
-    /**
-     * 控制异常状态数量始终为1，如果大于1将写入待删除 V：locate_potion
-     * */
-    private static void modPotionTagUtil(Entity entity, EntityLivingBase entityLiving, PotionEffect potionEffect)
-    {
-        World world = entity.getEntityWorld();
-
-        if (world.isRemote || potionEffect == null)
-        {
-            return;
-        }
-
-        Potion eventPotion = potionEffect.getPotion();
-
-        if(eventPotion instanceof PotionStatus)
+        //控制异常状态数量始终为1，如果大于1将写入待删除 V：locate_potion
+        if (!world.isRemote)
         {
             Map<Potion,Boolean> statusMap = ModStatusConditions.getEntityStatusMap(entityLiving);
-
-            if(ModStatusConditions.isEntityStatused(entityLiving) && !statusMap.get(eventPotion))
+            if(statusMap.containsKey(eventPotion))
             {
-                locate_potion = eventPotion;
+                if(ModStatusConditions.isEntityStatused(entityLiving) && !statusMap.get(eventPotion))
+                {
+                    locate_potion = eventPotion;
+                }
             }
         }
     }
+
+    @SubscribeEvent
+    public static void onPotionRemoved(PotionEvent.PotionRemoveEvent event)
+    {
+        World world = event.getEntity().getEntityWorld();
+        EntityLivingBase entityLiving = event.getEntityLiving();
+        Potion eventPotion = event.getPotion();
+
+        if (!world.isRemote)
+        {
+            Map<Potion,Boolean> statusMap = ModStatusConditions.getEntityStatusMap(entityLiving);
+            if(statusMap.containsKey(eventPotion))
+            {
+                if(ModStatusConditions.isEntityStatused(entityLiving) && !statusMap.get(eventPotion))
+                {
+                    locate_potion = null;
+                }
+            }
+        }
+    }
+
 
     @SubscribeEvent
     public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event)
@@ -72,7 +83,6 @@ public class PotionEventHandler
             if (locate_potion != null)
             {
                 entity.removePotionEffect(locate_potion);
-                locate_potion = null;
             }
 
             PotionEffect vanillaPoison = entity.getActivePotionEffect(MobEffects.POISON);
