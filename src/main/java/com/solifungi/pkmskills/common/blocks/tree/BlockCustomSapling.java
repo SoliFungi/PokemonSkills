@@ -136,6 +136,21 @@ public class BlockCustomSapling extends BlockBush implements IGrowable, IMetaNam
     }
 
     @Override
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    {
+        if (!worldIn.isRemote)
+        {
+            super.updateTick(worldIn, pos, state, rand);
+
+            if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+            if (worldIn.getLightFromNeighbors(pos.up()) >= 9 && rand.nextInt(7) == 0)
+            {
+                this.grow(worldIn, rand, pos, state);
+            }
+        }
+    }
+
+    @Override
     public void registerModels()
     {
         for(int i = 0; i < EnumHandler.EnumWoodType.values().length; i++)
@@ -174,8 +189,6 @@ public class BlockCustomSapling extends BlockBush implements IGrowable, IMetaNam
         {
             case MOSSY:
 
-                label0:
-
                 for (x = 0; x >= -1; --x)
                 {
                     for (z = 0; z >= -1; --z)
@@ -184,7 +197,7 @@ public class BlockCustomSapling extends BlockBush implements IGrowable, IMetaNam
                         {
                             gen = new WorldGenMegaMossyTree(true, 10, 20);
                             flag = true;
-                            break label0;
+                            break;
                         }
                     }
                 }
@@ -198,26 +211,27 @@ public class BlockCustomSapling extends BlockBush implements IGrowable, IMetaNam
         }
 
         IBlockState iBlockState = Blocks.AIR.getDefaultState();
+
         if(flag)
         {
-            world.setBlockState(pos.add(0,0,0), iBlockState,4);
-            world.setBlockState(pos.add(1,0,0), iBlockState,4);
-            world.setBlockState(pos.add(0,0,1), iBlockState,4);
-            world.setBlockState(pos.add(1,0,1), iBlockState,4);
+            world.setBlockState(pos.add(x,0,z), iBlockState,4);
+            world.setBlockState(pos.add(x + 1,0,z), iBlockState,4);
+            world.setBlockState(pos.add(x,0,z + 1), iBlockState,4);
+            world.setBlockState(pos.add(x + 1,0,z + 1), iBlockState,4);
         }
         else
         {
             world.setBlockState(pos, iBlockState,4);
         }
 
-        if(!gen.generate(world, rand, pos))
+        if(!gen.generate(world, rand, pos.add(x,0,z)))
         {
             if(flag)
             {
-                world.setBlockState(pos.add(0,0,0), iBlockState,4);
-                world.setBlockState(pos.add(1,0,0), iBlockState,4);
-                world.setBlockState(pos.add(0,0,1), iBlockState,4);
-                world.setBlockState(pos.add(1,0,1), iBlockState,4);
+                world.setBlockState(pos.add(x,0,z), iBlockState,4);
+                world.setBlockState(pos.add(x + 1,0,z), iBlockState,4);
+                world.setBlockState(pos.add(x,0,z + 1), iBlockState,4);
+                world.setBlockState(pos.add(x + 1,0,z + 1), iBlockState,4);
             }
             else
             {

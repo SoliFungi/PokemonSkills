@@ -27,7 +27,7 @@ public class WorldGenMossyTree extends WorldGenAbstractTree
     public WorldGenMossyTree()
     {
         super(false);
-        this.minHeight = 12;
+        this.minHeight = 4;
     }
 
     @Override
@@ -102,8 +102,6 @@ public class WorldGenMossyTree extends WorldGenAbstractTree
                                 if(treeState.getBlock().isAir(treeState, worldIn, treePos) || treeState.getBlock().isLeaves(treeState, worldIn, treePos) || treeState.getMaterial() == Material.VINE)
                                 {
                                     this.setBlockAndNotifyAdequately(worldIn, treePos, LEAF);
-                                    this.setBlockAndNotifyAdequately(worldIn, treePos.add(0,-0.25 * height,0), LEAF);
-                                    this.setBlockAndNotifyAdequately(worldIn, treePos.add(0,-0.5 * height,0), LEAF);
                                 }
                             }
                         }
